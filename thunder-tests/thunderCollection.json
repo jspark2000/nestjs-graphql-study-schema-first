@@ -1,7 +1,7 @@
 [
   {
     "_id": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
-    "colName": "graphql",
+    "colName": "Graphql",
     "created": "2023-03-20T13:03:48.522Z",
     "sortNum": 10000,
     "folders": [
@@ -10,11 +10,52 @@
         "name": "post",
         "containerId": "",
         "created": "2023-03-20T13:04:19.766Z",
+        "sortNum": 10000,
+        "settings": {
+          "headers": [],
+          "auth": {
+            "type": "bearer",
+            "bearer": "{{bearer_token}}"
+          },
+          "tests": []
+        }
+      },
+      {
+        "_id": "9f058059-c3e5-4b6c-817a-07b09eb25220",
+        "name": "Util",
+        "containerId": "",
+        "created": "2023-03-21T06:04:23.336Z",
+        "sortNum": 20000
+      }
+    ],
+    "settings": {
+      "headers": [],
+      "tests": [],
+      "options": {
+        "baseUrl": "http://localhost:3000"
+      }
+    }
+  },
+  {
+    "_id": "b721d6ce-3af6-4e8d-8c8f-3f9c83455ca6",
+    "colName": "REST",
+    "created": "2023-03-21T05:49:14.854Z",
+    "sortNum": 20000,
+    "folders": [
+      {
+        "_id": "32d42402-32fe-41dd-bbb7-75be31ac02b8",
+        "name": "auth",
+        "containerId": "",
+        "created": "2023-03-21T05:49:28.367Z",
         "sortNum": 10000
       }
     ],
     "settings": {
       "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{bearer_token}}"
+      },
       "tests": [],
       "options": {
         "baseUrl": "http://localhost:3000"

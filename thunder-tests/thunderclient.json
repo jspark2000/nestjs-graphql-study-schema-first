@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-20T13:04:24.709Z",
-    "modified": "2023-03-21T01:43:53.639Z",
+    "modified": "2023-03-21T06:06:12.798Z",
     "headers": [],
     "params": [],
     "body": {
@@ -19,7 +19,17 @@
         "query": "query getAllPosts {\n    posts {\n        id\n        title\n        content\n        author {\n            nickname\n        }\n        comments {\n            content\n        }\n    }\n}"
       }
     },
-    "tests": []
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
   },
   {
     "_id": "9882508d-488b-41ea-91c0-db50083a0a59",
@@ -30,7 +40,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-21T01:36:09.763Z",
-    "modified": "2023-03-21T01:43:56.900Z",
+    "modified": "2023-03-21T06:07:36.365Z",
     "headers": [],
     "params": [],
     "body": {
@@ -42,7 +52,17 @@
         "variables": "{\n  \"id\": 1\n}"
       }
     },
-    "tests": []
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
   },
   {
     "_id": "702a06eb-2a96-429e-a8a9-02d439c3f7e6",
@@ -53,7 +73,7 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2023-03-21T01:44:35.111Z",
-    "modified": "2023-03-21T02:16:26.957Z",
+    "modified": "2023-03-21T06:07:41.657Z",
     "headers": [],
     "params": [],
     "body": {
@@ -65,7 +85,17 @@
         "variables": "{\n  \"input\": {\n    \"userId\": 1,\n    \"title\": \"test1\",\n    \"content\": \"test1\"\n  }\n}"
       }
     },
-    "tests": []
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
   },
   {
     "_id": "07064df7-31e6-41cd-9dcd-cb2691a5a780",
@@ -76,7 +106,7 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-21T01:44:46.275Z",
-    "modified": "2023-03-21T02:18:51.866Z",
+    "modified": "2023-03-21T06:07:48.456Z",
     "headers": [],
     "params": [],
     "body": {
@@ -88,6 +118,80 @@
         "variables": "{\n  \"input\": {\n    \"id\": 1,\n    \"content\": \"updateTest\"\n  }\n}"
       }
     },
-    "tests": []
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
+  },
+  {
+    "_id": "e379f9e4-f9ce-4af4-855f-e5ab911a8e92",
+    "colId": "b721d6ce-3af6-4e8d-8c8f-3f9c83455ca6",
+    "containerId": "32d42402-32fe-41dd-bbb7-75be31ac02b8",
+    "name": "login as SuperAdmin",
+    "url": "/auth/login",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-21T05:49:43.866Z",
+    "modified": "2023-03-21T05:55:48.472Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"user02@example.com\",\n  \"password\": \"1234\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "header.authorization",
+        "action": "setto",
+        "value": "{{bearer_token}}"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "cookie.refresh_token",
+        "action": "setto",
+        "value": "{{refresh_token}}"
+      }
+    ]
+  },
+  {
+    "_id": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "9f058059-c3e5-4b6c-817a-07b09eb25220",
+    "name": "login as SuperAdmin",
+    "url": "/auth/login",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-21T06:04:28.217Z",
+    "modified": "2023-03-21T06:04:29.937Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"user02@example.com\",\n  \"password\": \"1234\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "header.authorization",
+        "action": "setto",
+        "value": "{{bearer_token}}"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "cookie.refresh_token",
+        "action": "setto",
+        "value": "{{refresh_token}}"
+      }
+    ]
   }
 ]

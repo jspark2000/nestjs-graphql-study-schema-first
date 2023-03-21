@@ -10,31 +10,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  User
+  Manager
+  Admin
+  SuperAdmin
+}
+
 model Post {
-  id Int @id @default(autoincrement())
-  author User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId Int
+  id        Int       @id @default(autoincrement())
+  author    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
   createdAt DateTime
-  title String
-  content String
-  comments Comment[]
+  title     String
+  content   String
+  comments  Comment[]
 }
 
 model Comment {
-  id Int @id @default(autoincrement())
-  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId Int
-  author User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId Int
+  id        Int      @id @default(autoincrement())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  author    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
   createdAt DateTime
-  content String
+  content   String
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  nickname String
-  email String
+  id       Int       @id @default(autoincrement())
+  role     Role      @default(User)
+  nickname String    @unique
+  email    String    @unique
   password String
-  posts Post[]
+  posts    Post[]
   comments Comment[]
 }

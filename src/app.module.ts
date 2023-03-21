@@ -9,9 +9,14 @@ import { CommonModule } from './common/common.module';
 import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { CommentModule } from './comment/comment.module';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
@@ -24,8 +29,9 @@ import { CommentModule } from './comment/comment.module';
     UserModule,
     PrismaModule,
     CommentModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }],
 })
 export class AppModule {}
