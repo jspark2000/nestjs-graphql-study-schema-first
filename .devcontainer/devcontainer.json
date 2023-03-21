@@ -1,0 +1,22 @@
+{
+  "name": "skkuding-study",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "runServices": ["app", "dev-db"],
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "scripts/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "prisma.prisma",
+        "rangav.vscode-thunder-client",
+        "mhutchie.git-graph",
+        "graphql.vscode-graphql"
+      ]
+    }
+  },
+  // Connect as non-root user (https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user)
+  "remoteUser": "node"
+}

@@ -1,0 +1,33 @@
+scalar Date
+
+type Post {
+  id: Int!
+  author: User!
+  createdAt: Date
+  title: String
+  content: String
+  comments: [Comment]!
+}
+
+type Query {
+  posts: [Post]
+  post(id: Int!): Post
+}
+
+type Mutation {
+  createPost(input: CreatePostInput): Post
+  updatePost(input: UpdatePostInput): Post
+  deletePost(id: Int!): Post
+}
+
+input CreatePostInput {
+  userId: Int!
+  title: String!
+  content: String!
+}
+
+input UpdatePostInput {
+  id: Int!
+  title: String
+  content: String
+}

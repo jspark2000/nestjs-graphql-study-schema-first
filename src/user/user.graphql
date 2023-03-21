@@ -1,0 +1,13 @@
+type User {
+  id: Int!
+  nickname: String
+  email: String
+  password: String
+  posts: [Post]
+  comments: [Comment]
+}
+
+type Query {
+  user(id: Int!): User
+  users: [User]!
+}

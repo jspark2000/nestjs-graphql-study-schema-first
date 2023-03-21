@@ -1,0 +1,93 @@
+[
+  {
+    "_id": "8c95a962-3161-4b23-9613-0704d1b62ca1",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "ce23dbb5-068c-40a1-85a4-5a5f8749c8ba",
+    "name": "get all posts",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-20T13:04:24.709Z",
+    "modified": "2023-03-21T01:43:53.639Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query getAllPosts {\n    posts {\n        id\n        title\n        content\n        author {\n            nickname\n        }\n        comments {\n            content\n        }\n    }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "9882508d-488b-41ea-91c0-db50083a0a59",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "ce23dbb5-068c-40a1-85a4-5a5f8749c8ba",
+    "name": "get post by id",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-21T01:36:09.763Z",
+    "modified": "2023-03-21T01:43:56.900Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query getPostById($id: Int!) {\n    post(id: $id) {\n        id\n        title\n        content\n        createdAt\n        author {\n            nickname\n        }\n    }\n}",
+        "variables": "{\n  \"id\": 1\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "702a06eb-2a96-429e-a8a9-02d439c3f7e6",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "ce23dbb5-068c-40a1-85a4-5a5f8749c8ba",
+    "name": "create post",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-03-21T01:44:35.111Z",
+    "modified": "2023-03-21T02:16:26.957Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation CreatePost($input: CreatePostInput) {\n    createPost(input: $input) {\n        id\n        title\n        content\n        createdAt\n        author {\n            id\n        }\n    }\n}",
+        "variables": "{\n  \"input\": {\n    \"userId\": 1,\n    \"title\": \"test1\",\n    \"content\": \"test1\"\n  }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "07064df7-31e6-41cd-9dcd-cb2691a5a780",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "ce23dbb5-068c-40a1-85a4-5a5f8749c8ba",
+    "name": "update post",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2023-03-21T01:44:46.275Z",
+    "modified": "2023-03-21T02:18:51.866Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation UpdatePost($input: UpdatePostInput) {\n    updatePost(input: $input) {\n        id\n        title\n        content\n        createdAt\n        author {\n            id\n        }\n    }\n}",
+        "variables": "{\n  \"input\": {\n    \"id\": 1,\n    \"content\": \"updateTest\"\n  }\n}"
+      }
+    },
+    "tests": []
+  }
+]

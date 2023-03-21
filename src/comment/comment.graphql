@@ -1,0 +1,13 @@
+scalar Date
+
+type Comment {
+  id: Int!
+  post: Post!
+  author: User!
+  createdAt: Date
+  content: String
+}
+
+type Query {
+  comments: [Comment]!
+}
