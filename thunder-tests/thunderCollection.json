@@ -13,10 +13,6 @@
         "sortNum": 10000,
         "settings": {
           "headers": [],
-          "auth": {
-            "type": "bearer",
-            "bearer": "{{bearer_token}}"
-          },
           "tests": []
         }
       },
@@ -26,10 +22,21 @@
         "containerId": "",
         "created": "2023-03-21T06:04:23.336Z",
         "sortNum": 20000
+      },
+      {
+        "_id": "1c2f3978-3827-4c07-88fe-62e1b1dc9b4c",
+        "name": "user",
+        "containerId": "",
+        "created": "2023-03-21T06:42:59.462Z",
+        "sortNum": 30000
       }
     ],
     "settings": {
       "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{bearer_token}}"
+      },
       "tests": [],
       "options": {
         "baseUrl": "http://localhost:3000"

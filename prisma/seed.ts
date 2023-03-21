@@ -49,7 +49,7 @@ async function main() {
     {
       userId: 1,
       title: 'post2',
-      content: 'conten2',
+      content: 'content2',
       createdAt: new Date('2023-01-03'),
     },
     {
@@ -110,7 +110,7 @@ async function main() {
     {
       userId: 1,
       postId: 2,
-      content: 'comment3',
+      content: 'comment4',
       createdAt: new Date('2022-01-03'),
     },
   ];

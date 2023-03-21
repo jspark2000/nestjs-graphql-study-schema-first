@@ -165,13 +165,13 @@
   {
     "_id": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
     "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
-    "containerId": "9f058059-c3e5-4b6c-817a-07b09eb25220",
+    "containerId": "ce23dbb5-068c-40a1-85a4-5a5f8749c8ba",
     "name": "login as SuperAdmin",
     "url": "/auth/login",
     "method": "POST",
-    "sortNum": 10000,
+    "sortNum": 5000,
     "created": "2023-03-21T06:04:28.217Z",
-    "modified": "2023-03-21T06:04:29.937Z",
+    "modified": "2023-03-21T06:58:11.570Z",
     "headers": [],
     "params": [],
     "body": {
@@ -193,5 +193,82 @@
         "value": "{{refresh_token}}"
       }
     ]
+  },
+  {
+    "_id": "5f3a5eb5-064c-4279-9f95-b92de07c7391",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "9f058059-c3e5-4b6c-817a-07b09eb25220",
+    "name": "login as User",
+    "url": "/auth/login",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-21T06:42:18.660Z",
+    "modified": "2023-03-21T06:42:34.107Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"user03@example.com\",\n  \"password\": \"1234\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "header.authorization",
+        "action": "setto",
+        "value": "{{bearer_token}}"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "cookie.refresh_token",
+        "action": "setto",
+        "value": "{{refresh_token}}"
+      }
+    ]
+  },
+  {
+    "_id": "0c8de71a-3eb5-492d-b464-248f1281a887",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "1c2f3978-3827-4c07-88fe-62e1b1dc9b4c",
+    "name": "403: get all users",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2023-03-21T06:43:09.468Z",
+    "modified": "2023-03-21T06:58:30.707Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query getAllUsers {\n    users {\n        nickname\n    }\n}\n"
+      }
+    },
+    "tests": [
+      {
+        "type": "json-query",
+        "custom": "json.errors[0].message",
+        "action": "contains",
+        "value": "Forbidden"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.errors[0].path[0]",
+        "action": "equal",
+        "value": "users"
+      }
+    ],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5f3a5eb5-064c-4279-9f95-b92de07c7391",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
   }
 ]

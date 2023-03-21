@@ -1,5 +1,6 @@
 import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
-import { Post, Comment, User } from '@prisma/client';
+import { Post, Comment, User, Role } from '@prisma/client';
+import { Roles } from 'src/common/decorator/roles.decorator';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Resolver('User')
@@ -16,6 +17,7 @@ export class UserResolver {
   }
 
   @Query()
+  @Roles(Role.Admin)
   async users(): Promise<User[]> {
     return await this.prismaService.user.findMany();
   }
