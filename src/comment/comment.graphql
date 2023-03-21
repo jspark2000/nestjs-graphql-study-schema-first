@@ -11,3 +11,17 @@ type Comment {
 type Query {
   comments: [Comment]!
 }
+
+type Mutation {
+  createComment(postId: Int!, input: CreateCommentInput): Comment
+  updateComment(id: Int!, input: UpdateCommentInput): Comment
+  deleteComment(id: Int!): Comment
+}
+
+input CreateCommentInput {
+  content: String!
+}
+
+input UpdateCommentInput {
+  content: String!
+}

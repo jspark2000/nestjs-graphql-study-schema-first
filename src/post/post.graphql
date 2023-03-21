@@ -21,7 +21,6 @@ type Mutation {
 }
 
 input CreatePostInput {
-  userId: Int!
   title: String!
   content: String!
 }

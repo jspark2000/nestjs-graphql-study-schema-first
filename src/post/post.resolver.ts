@@ -1,5 +1,6 @@
 import {
   Args,
+  Context,
   Mutation,
   Parent,
   Query,
@@ -7,6 +8,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { Post, Comment, User } from '@prisma/client';
+import { AuthenticatedRequest } from 'src/auth/interface/authenticated-request.interface';
 import { CreatePostInput, UpdatePostInput } from 'src/graphql';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -29,11 +31,15 @@ export class PostResolver {
   }
 
   @Mutation()
-  async createPost(@Args('input') input: CreatePostInput) {
+  async createPost(
+    @Args('input') input: CreatePostInput,
+    @Context('req') request: AuthenticatedRequest,
+  ) {
     return await this.prismaService.post.create({
       data: {
-        ...input,
+        userId: request.user.id,
         createdAt: new Date(),
+        ...input,
       },
     });
   }
@@ -47,6 +53,15 @@ export class PostResolver {
       data: {
         title: input.title,
         content: input.content,
+      },
+    });
+  }
+
+  @Mutation()
+  async deletePost(@Args('id') id: number): Promise<Post> {
+    return await this.prismaService.post.delete({
+      where: {
+        id,
       },
     });
   }

@@ -40,7 +40,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-21T01:36:09.763Z",
-    "modified": "2023-03-21T06:07:36.365Z",
+    "modified": "2023-03-21T07:44:38.453Z",
     "headers": [],
     "params": [],
     "body": {
@@ -52,7 +52,26 @@
         "variables": "{\n  \"id\": 1\n}"
       }
     },
-    "tests": [],
+    "tests": [
+      {
+        "type": "json-query",
+        "custom": "json.data.post.id",
+        "action": "equal",
+        "value": "1"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.data.post.title",
+        "action": "equal",
+        "value": "post1"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.data.post.author.nickname",
+        "action": "equal",
+        "value": "user01"
+      }
+    ],
     "preReq": {
       "runRequests": [
         {
@@ -73,7 +92,7 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2023-03-21T01:44:35.111Z",
-    "modified": "2023-03-21T06:07:41.657Z",
+    "modified": "2023-03-21T07:43:28.846Z",
     "headers": [],
     "params": [],
     "body": {
@@ -82,10 +101,29 @@
       "form": [],
       "graphql": {
         "query": "mutation CreatePost($input: CreatePostInput) {\n    createPost(input: $input) {\n        id\n        title\n        content\n        createdAt\n        author {\n            id\n        }\n    }\n}",
-        "variables": "{\n  \"input\": {\n    \"userId\": 1,\n    \"title\": \"test1\",\n    \"content\": \"test1\"\n  }\n}"
+        "variables": "{\n  \"input\": {\n    \"title\": \"test title\",\n    \"content\": \"test content\"\n  }\n}"
       }
     },
-    "tests": [],
+    "tests": [
+      {
+        "type": "json-query",
+        "custom": "json.data.createPost.title",
+        "action": "equal",
+        "value": "test title"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.data.createPost.content",
+        "action": "equal",
+        "value": "test content"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.data.createPost.author.id",
+        "action": "equal",
+        "value": "2"
+      }
+    ],
     "preReq": {
       "runRequests": [
         {
@@ -106,7 +144,7 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-21T01:44:46.275Z",
-    "modified": "2023-03-21T06:07:48.456Z",
+    "modified": "2023-03-21T07:38:43.115Z",
     "headers": [],
     "params": [],
     "body": {
@@ -118,11 +156,24 @@
         "variables": "{\n  \"input\": {\n    \"id\": 1,\n    \"content\": \"updateTest\"\n  }\n}"
       }
     },
-    "tests": [],
+    "tests": [
+      {
+        "type": "json-query",
+        "custom": "json.data.updatePost.id",
+        "action": "equal",
+        "value": "1"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.data.updatePost.content",
+        "action": "equal",
+        "value": "updateTest"
+      }
+    ],
     "preReq": {
       "runRequests": [
         {
-          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "reqId": "5f3a5eb5-064c-4279-9f95-b92de07c7391",
           "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
           "triggerCondition": "run-always",
           "triggerValue": ""
@@ -165,13 +216,13 @@
   {
     "_id": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
     "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
-    "containerId": "ce23dbb5-068c-40a1-85a4-5a5f8749c8ba",
+    "containerId": "9f058059-c3e5-4b6c-817a-07b09eb25220",
     "name": "login as SuperAdmin",
     "url": "/auth/login",
     "method": "POST",
-    "sortNum": 5000,
+    "sortNum": 10000,
     "created": "2023-03-21T06:04:28.217Z",
-    "modified": "2023-03-21T06:58:11.570Z",
+    "modified": "2023-03-21T07:23:29.007Z",
     "headers": [],
     "params": [],
     "body": {
@@ -258,6 +309,202 @@
         "custom": "json.errors[0].path[0]",
         "action": "equal",
         "value": "users"
+      }
+    ],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5f3a5eb5-064c-4279-9f95-b92de07c7391",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
+  },
+  {
+    "_id": "9f36eab6-9ec8-46f3-b0b9-e73ea72ab4fb",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "9d58669e-9442-4671-a6e9-8630fde71cd1",
+    "name": "create comment",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2023-03-21T07:22:40.791Z",
+    "modified": "2023-03-21T07:36:34.049Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation createComment($input: CreateCommentInput, $postId: Int!) {\n    createComment(input: $input, postId: $postId) {\n        content\n        author {\n            id\n        }\n    }\n}",
+        "variables": "{\n  \"input\" : {\n    \"content\": \"test content\"\n  },\n  \"postId\": 1\n}"
+      }
+    },
+    "tests": [
+      {
+        "type": "json-query",
+        "custom": "json.data.createComment.content",
+        "action": "equal",
+        "value": "test content"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.data.createComment.author.id",
+        "action": "equal",
+        "value": "2"
+      }
+    ],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
+  },
+  {
+    "_id": "3ec8bd33-63be-43ed-9820-4b6f13d9ffd5",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "9d58669e-9442-4671-a6e9-8630fde71cd1",
+    "name": "get all comments",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2023-03-21T07:32:57.059Z",
+    "modified": "2023-03-21T07:32:57.059Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query getAllComments {\n    comments {\n        content\n        author {\n            id\n        }\n    }\n}"
+      }
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
+  },
+  {
+    "_id": "0390b899-ed4a-40ff-a6e0-5f1a5a80bbba",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "1c2f3978-3827-4c07-88fe-62e1b1dc9b4c",
+    "name": "get all users",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 25000,
+    "created": "2023-03-21T07:45:05.558Z",
+    "modified": "2023-03-21T07:49:55.126Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query getAllUsers {\n    users {\n        nickname\n    }\n}\n"
+      }
+    },
+    "tests": [
+      {
+        "type": "json-query",
+        "custom": "json.data.users",
+        "action": "count",
+        "value": "5"
+      }
+    ],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
+  },
+  {
+    "_id": "fad79455-cf5d-4b42-8acf-ae8435039dc9",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "ce23dbb5-068c-40a1-85a4-5a5f8749c8ba",
+    "name": "delete post",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2023-03-21T07:46:03.124Z",
+    "modified": "2023-03-21T07:47:42.604Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation deletePost($id: Int!) {\n    deletePost(id: $id) {\n        id\n        content\n        author {\n            nickname\n        }\n    }\n}",
+        "variables": "{\n  \"id\": 13\n}"
+      }
+    },
+    "tests": [],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "5ca3d076-01c5-4996-83c9-7ea2033f0c4d",
+          "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
+  },
+  {
+    "_id": "8c624bf8-7c66-4204-9a69-ef9c8b658faa",
+    "colId": "7d52788e-f81b-47e2-a7e0-5c8cc8bdeefe",
+    "containerId": "9d58669e-9442-4671-a6e9-8630fde71cd1",
+    "name": "update comment",
+    "url": "/graphql",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2023-03-21T07:52:28.434Z",
+    "modified": "2023-03-21T08:02:20.299Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation updateComment ($input: UpdateCommentInput, $id: Int!) {\n    updateComment(input: $input, id: $id) {\n        id\n        content\n    }\n}",
+        "variables": "{\n  \"id\": 1,\n  \"input\": {\n    \"content\": \"comment update test\"\n  }\n}"
+      }
+    },
+    "tests": [
+      {
+        "type": "json-query",
+        "custom": "json.data.updateComment.id",
+        "action": "equal",
+        "value": "1"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.data.updateComment.content",
+        "action": "equal",
+        "value": "comment update test"
       }
     ],
     "preReq": {

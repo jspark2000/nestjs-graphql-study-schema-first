@@ -8,8 +8,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export interface CreateCommentInput {
+    content: string;
+}
+
+export interface UpdateCommentInput {
+    content: string;
+}
+
 export interface CreatePostInput {
-    userId: number;
     title: string;
     content: string;
 }
@@ -36,6 +43,15 @@ export interface IQuery {
     users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 }
 
+export interface IMutation {
+    createComment(postId: number, input?: Nullable<CreateCommentInput>): Nullable<Comment> | Promise<Nullable<Comment>>;
+    updateComment(id: number, input?: Nullable<UpdateCommentInput>): Nullable<Comment> | Promise<Nullable<Comment>>;
+    deleteComment(id: number): Nullable<Comment> | Promise<Nullable<Comment>>;
+    createPost(input?: Nullable<CreatePostInput>): Nullable<Post> | Promise<Nullable<Post>>;
+    updatePost(input?: Nullable<UpdatePostInput>): Nullable<Post> | Promise<Nullable<Post>>;
+    deletePost(id: number): Nullable<Post> | Promise<Nullable<Post>>;
+}
+
 export interface Post {
     id: number;
     author: User;
@@ -43,12 +59,6 @@ export interface Post {
     title?: Nullable<string>;
     content?: Nullable<string>;
     comments: Nullable<Comment>[];
-}
-
-export interface IMutation {
-    createPost(input?: Nullable<CreatePostInput>): Nullable<Post> | Promise<Nullable<Post>>;
-    updatePost(input?: Nullable<UpdatePostInput>): Nullable<Post> | Promise<Nullable<Post>>;
-    deletePost(id: number): Nullable<Post> | Promise<Nullable<Post>>;
 }
 
 export interface User {
