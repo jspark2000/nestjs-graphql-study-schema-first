@@ -8,6 +8,13 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export enum Role {
+    User = "User",
+    Manager = "Manager",
+    Admin = "Admin",
+    SuperAdmin = "SuperAdmin"
+}
+
 export interface CreateCommentInput {
     content: string;
 }
@@ -64,6 +71,7 @@ export interface Post {
 export interface User {
     id: number;
     nickname?: Nullable<string>;
+    role?: Nullable<Role>;
     email?: Nullable<string>;
     password?: Nullable<string>;
     posts?: Nullable<Nullable<Post>[]>;

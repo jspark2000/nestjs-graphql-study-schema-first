@@ -409,7 +409,7 @@
     "method": "POST",
     "sortNum": 25000,
     "created": "2023-03-21T07:45:05.558Z",
-    "modified": "2023-03-21T07:49:55.126Z",
+    "modified": "2023-03-21T11:50:08.074Z",
     "headers": [],
     "params": [],
     "body": {
@@ -417,7 +417,7 @@
       "raw": "",
       "form": [],
       "graphql": {
-        "query": "query getAllUsers {\n    users {\n        nickname\n    }\n}\n"
+        "query": "query getAllUsers {\n    users {\n        id\n        email\n        nickname\n        role\n    }\n}\n"
       }
     },
     "tests": [

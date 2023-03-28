@@ -1,6 +1,14 @@
+enum Role {
+  User
+  Manager
+  Admin
+  SuperAdmin
+}
+
 type User {
   id: Int!
   nickname: String
+  role: Role
   email: String
   password: String
   posts: [Post]
